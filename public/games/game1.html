@@ -1,0 +1,312 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style type="text/css">
+        html,
+        body,
+        #root {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%
+        }
+        body {
+            padding: 15px;
+        }
+        #root {
+            margin-top: 50px;
+        }
+        .menu {
+            margin: 0;
+            padding: 0;
+            padding-left: 20px;
+        }
+        .menu li {
+            cursor: pointer;
+        }
+        .menu li:hover {
+            text-decoration: underline;
+        }
+        #presenter section {
+            display: none;
+        }
+        #presenter.step1 .welcome {
+            display: block;
+        }
+        #presenter.step2 .rule1 {
+            display: block;
+        }
+        #presenter.step3 .rule2 {
+            display: block;
+            font-size: 24px;
+        }
+        #presenter.step4 .rule3 {
+            display: block;
+            font-size: 24px;
+        }
+        #presenter.step5 .rule4 {
+            display: block;
+            font-size: 24px;
+        }
+        #presenter.step6 .game {
+            display: block;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #000;
+        }
+        .clock {
+            font-size: 5em;
+        }
+        .card {
+            padding: 15px;
+        }
+        .card .word {
+            text-transform: uppercase;
+            font-size: 5em;
+        }
+        .scores .team ul li {
+            list-style: none;
+            display: block;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root" class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="presenter">
+                    <section class="welcome jumbotron">
+                        <h1>Use 10 words to describe a topic</h1>
+                    </section>
+                    <section class="rule1 jumbotron">
+                        <h1>How to play</h1>
+                    </section>
+                    <section class="rule2 jumbotron">
+                        <h1>We have 2 team: </h1>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h3 class="text-center">A</h3>
+                                <hr/>
+                                <ul>
+                                    <li>Alex</li>
+                                    <li>Bravo</li>
+                                    <li>Muller</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-6">
+                                <h3 class="text-center">B</h3>
+                                <hr/>
+                                <ul>
+                                    <li>Joseph</li>
+                                    <li>Forrest</li>
+                                    <li>Walter</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="rule3 jumbotron">
+                        <ul>
+                            <li>Host gives you a topic then says "GO" and start the counter</li>
+                            <li>Teams have 2 minutes to write all your answers</li>
+                            <li>Host says "STOP" and stop the counter</li>
+                            <li>Host counts the answer to determine the round winner</li>
+                            <li>We play 5 rounds, if two team are equal score we play more round.</li>
+                        </ul>
+                    </section>
+                    <section class="rule4 jumbotron">
+                        <h1>Rules </h1>
+                        <div class="row">
+                            <div class="col-xs-4 text-success">
+                                <h3 class="text-center">Valid (+1)</h3>
+                                <hr/>
+                                <ul>
+                                    <li>At least 3 words and up to 10 words per answer.</li>
+                                    <li>Don't repeat the idea.</li>
+                                    <li>Answer makes sense.</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-4 text-warning">
+                                <h3 class="text-center">Invalid (0)</h3>
+                                <hr/>
+                                <ul>
+                                    <li>Over 10 or less than 3 words.</li>
+                                    <li>Answer doesn't make sense.</li>
+                                    <li>Teams have same answers they will be marked as invalid.</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-4 text-danger">
+                                <h3 class="text-center">Penalty (-1)</h3>
+                                <hr/>
+                                <ul>
+                                    <li>Repeat idea.</li>
+                                    <li>Less than 3 valid answers.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-primary">Score: each valid answer +1 and penalty answer -1 </p>
+                        <p class="text-center">
+                            <button class="btn btn-primary" onclick="game.start()">Start game</button>
+                        </p>
+                    </section>
+                    <section class="game">
+                        <div class="clock text-center" id="clock"></div>
+                        <p class="bg-primary card text-center">
+                            <span id="word" class="word"></span>
+                            <br/>
+                            <span id="description" class="description"></span>
+                        </p>
+                        <p class="text-center">
+                            <button class="btn btn-primary" onclick="game.nextWord()">Next word</button>
+                        </p>
+                        <div class="scores row">
+                            <div class="col-xs-6 col-sm-4 col-md-2 team-a team well">
+                                <h3>A</h3>
+                                <ul></ul>
+                                <hr/>
+                                <div class="total text-right">0</div>
+                                <input class="form-control" />
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-2 team-b team well">
+                                <h3>B</h3>
+                                <ul></ul>
+                                <hr/>
+                                <div class="total text-right">0</div>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var counterId = 0;
+
+        function startClock() {
+            var time = 2 * 60;
+
+            if (counterId) clearInterval(counterId);
+
+            updateClock(time);
+            counterId = setInterval(function() {
+                time--;
+                updateClock(time);
+                if (!time) {
+                    clearInterval(counterId);
+                    counterId = 0;
+                }
+            }, 1000);
+        }
+
+        function updateClock(time) {
+            var m = Math.floor(time / 60).toString();
+            var s = (time - (m * 60)).toString();
+
+            m = (m.length < 2 ? '0' : '') + m;
+            s = (s.length < 2 ? '0' : '') + s;
+
+            $('#clock').text(m + ' : ' + s);
+        }
+
+        var state = {
+            play: 1,
+            stop: 2,
+            pause: 3
+        };
+
+        var words = ['Tree', 'Nipple', 'Dog', 'Car', 'Fall', 'Minimum', 'Satellite', 'State-of-the-art', 'Restate', 'Ice', 'refreshment', 'invent', 'crossroad', 'influence'];
+        var descriptions = [
+            'Tall plant, has wooden body and branches, leaves', 'Dark part of the skin in boob', 'An animal with four legs, best human\'s friend', 'A metal box with four wheels, we drive on road', 'An accident, suddenly go down onto the ground', 'A smallest amount', 'An object travels around a planet', 'Very modern and using the most recent ideas and methods', 'Say something again or in a different way', 'Frozen water', 'A small food or drink', 'Create a new thing that doesn\'t exist', 'A place where a road crosses another road', 'The power to have an effect on people'
+        ];
+        var game = {
+            state: state.stop,
+            step: 1,
+            words: words,
+            descriptions: descriptions,
+            next: function() {
+                this.goto(this.step + 1)
+            },
+            prev: function() {
+                this.goto(this.step - 1)
+            },
+            goto: function(step) {
+                if (step < 1) step = 1;
+                this.step = step;
+                $('#presenter').removeClass().addClass('step' + step);
+            },
+            startClock: startClock,
+            nextWord: function() {
+                this.startClock();
+                $("#word").text(this.words.shift());
+                $("#description").text(this.descriptions.shift());
+            },
+            start: function() {
+                this.state = state.play;
+                this.goto(6);
+                this.nextWord();
+            },
+            scores: {
+                a: [],
+                b: [],
+                pa: [],
+                pb: []
+            },
+            updateScore: function(team, value) {
+                if (value > 0) {
+                    this.scores[team].push(value);
+                } else {
+                    this.scores['p' + team].push(value);
+                }
+                var total = 0;
+                var ul = $('.team-' + team).find('ul').empty();
+                $.each(this.scores[team], function(_, v) {
+                    ul.append($('<li></li>').text(v));
+                    total += v;
+                });
+                $.each(this.scores['p' + team], function(_, v) {
+                    ul.append($('<li class="text-danger"></li>').text(v));
+                    total += v;
+                });
+                ul.end().find('.total').text(total);
+            }
+        };
+
+        game.goto(1);
+
+        function updateScore(input) {
+            var value = parseInt(input.value);
+            var team = $(input).closest('.team').hasClass('team-a') ? 'a' : 'b';
+
+            game.updateScore(team, value);
+        }
+
+        $('body').on('keydown', function(event) {
+            if (game.state === state.stop) {
+                switch (event.keyCode) {
+                    case 37:
+                    case 38:
+                        if (game.step < 6) game.prev();
+                        break;
+                    case 39:
+                    case 40:
+                        if (game.step < 5) game.next();
+                        break;
+                }
+            }
+        });
+
+        $(".team").on('keydown', 'input', function(e) {
+            if (e.keyCode === 13) {
+                updateScore(this);
+                this.value = '';
+            }
+        })
+    </script>
+</body>
+
+</html>

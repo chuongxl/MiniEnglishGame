@@ -69,6 +69,13 @@ var gameBoard = function () {
             }
             reflectPoint();
         });
+        $("#game-guide").click(function(){
+             var name = $("#game-name").val();
+             if(name)
+             {
+                window.open("/games/"+name+".html");
+             }
+        });
     };
     $("#game-run").click(function () {
         var name = $("#game-name").val();
