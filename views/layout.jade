@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel='stylesheet',href='/components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/plugins/flipclock/flipclock.css')
+    script(src='/components/jquery/dist/jquery.min.js')
+    script(src='/plugins/flipclock/flipclock.min.js')
+
+  body
+    header(class="navbar navbar-inverse navbar-fixed-top")
+      div(class="container")
+        div(class="navbar-header")
+          button(aria-controls='bs-navbar',aria-expanded='true',class='collapsed navbar-toggle',data-target='#bs-navbar',data-toggle='collapse')
+            span(class='sr-only') Toogle navigation
+            span(class='icon-bar')
+            span(class='icon-bar')
+            span(class='icon-bar')
+          a(href='/',class='navbar-brand') Mini Game
+        nav(class='collapse navbar-collapse',id='bs-navbar')
+          ul(class='nav navbar-nav')
+            li
+              a(href='/Gameboard') Game
+            li
+              a(href='/Guide') Guide
+    div(class="container")
+      block content
+   

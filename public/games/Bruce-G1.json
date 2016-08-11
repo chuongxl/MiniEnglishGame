@@ -1,0 +1,39 @@
+{
+  "Q": [
+    {
+      "Key": "asdasdasd",
+      "Value": "Yada asd asd asdaster"
+    },
+    {
+      "Key": "Q-2",
+      "Value": "Your Salary"
+    }
+  ],
+  "A": [
+    {
+      "Key": "Q-1",
+      "Value": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "Key": "Q-2",
+      "Value": [
+        "A",
+        "B"
+      ]
+    }
+  ],
+  "MA": [
+    "Bruce",
+    "Joseph",
+    "Walter"
+  ],
+  "MB": [
+    "Bravo",
+    "Muller",
+    "Forrest"
+  ],
+  "Time": 120
+}

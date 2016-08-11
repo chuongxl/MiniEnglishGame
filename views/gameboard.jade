@@ -1,0 +1,72 @@
+extends layout
+
+block content
+ div(class='row')
+    div(class="col-sm-6")
+        br
+        div(class="panel panel-danger")
+            div(class="panel-heading") Game :&nbsp;
+                span
+                    input(type='text',id='game-name')
+                span &nbsp; 
+                    button(type="button",id='game-run', class="btn btn-xs btn-danger") Run
+            div(class="panel-body")
+              div(class="panel panel-primary")
+                div(class="panel-heading") Q:
+                    button(type="button",id='next-q', class="btn btn-xs btn-danger") Next
+                div(class="panel-body")  
+                    h2(class='text-danger',id='n-question') Your Topics is here :)
+            
+              div(class="panel panel-danger")
+                div(class="panel-heading") Timer:
+                div(class="panel-body")  
+                    div(class='your-clock')
+              div(class="panel panel-success")
+                div(class="panel-heading") Points:
+                div(class="panel-body")  
+                    div
+                        span Team A:
+                            input(type='text',id='input-point-a')
+                    br
+                    div
+                        span Team B:
+                            input(type='text',id='input-point-b')
+                    br
+                    div
+                        button(type="button",id='save-point', class="btn btn-xs btn-primary") Save
+    div(class="col-sm-6")
+        br
+        div(class="panel panel-success")
+            div(class="panel-heading") Result
+            div(class="panel-body")
+               div(class="row")
+                div(class="col-sm-6")
+                    div(class="panel panel-primary")
+                        div(class="panel-heading") Team A:
+                        div(class="panel-body",id='m-A') 
+                            p Alex
+                            p Muller
+                            p Bruce 
+                    div(class="panel panel-primary")
+                        div(class="panel-heading") Team A-Score:
+                        div(class="panel-body")  
+                            h1(align="center",id='p-A') 
+                div(class="col-sm-6")
+                    div(class="panel panel-danger")
+                        div(class="panel-heading") Team B:
+                        div(class="panel-body",id='m-B')  
+                            p Alex
+                            p Muller
+                            p Bruce
+                    div(class="panel panel-danger")
+                        div(class="panel-heading") Team B-Score:
+                        div(class="panel-body")  
+                            h1(align="center",id="p-B") 
+    script(src='/javascripts/gameboard.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+           var g=new gameBoard();
+           g.init();
+        });
+       
+    

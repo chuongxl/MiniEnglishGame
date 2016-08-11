@@ -1,0 +1,72 @@
+{
+    "Q": [
+        {
+            "Key": "Tree",
+            "Value": "Tall plant, has wooden body and branches, leaves"
+        },
+        {
+            "Key": "Nipple",
+            "Value": "Dark part of the skin in boob"
+        },
+        {
+            "Key": "Dog",
+            "Value": "An animal with four legs, best human's friend"
+        },
+        {
+            "Key": "Car",
+            "Value": "A metal box with four wheels, we drive on road"
+        },
+        {
+            "Key": "Fall",
+            "Value": "An accident, suddenly go down onto the ground"
+        },
+        {
+            "Key": "Minimum",
+            "Value": "A smallest amount"
+        },
+        {
+            "Key": "Satellite",
+            "Value": "An object travels around a planet"
+        },
+        {
+            "Key": "State-of-the-art",
+            "Value": "Very modern and using the most recent ideas and methods"
+        },
+        {
+            "Key": "Restate",
+            "Value": "Say something again or in a different way"
+        },
+        {
+            "Key": "Ice",
+            "Value": "Frozen water"
+        },
+        {
+            "Key": "Refreshment",
+            "Value": "A small food or drink"
+        },
+        {
+            "Key": "Invent",
+            "Value": "Create a new thing that doesn't exist"
+        },
+        {
+            "Key": "Crossroad",
+            "Value": "A place where a road crosses another road"
+        },
+        {
+            "Key": "Influence",
+            "Value": "The power to have an effect on people"
+        }
+    ],
+    "A": [],
+    "MA": [
+        "Alex",
+        "Bravo",
+        "Muller"
+    ],
+    "MB": [
+        "Joseph",
+        "Walter",
+        "Forrest"
+    ],
+    "Time": 120
+}

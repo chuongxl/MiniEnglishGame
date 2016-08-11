@@ -1,0 +1,23 @@
+{
+  "name": "bootstrap",
+  "dependencies": {
+    "jquery": "2.1.4",
+    "bootstrap": "3.3.5"
+  },
+  "directory": "public/lib",
+  "description": "",
+  "main": "",
+  "authors": [
+    "alex.nguyen <alex.nguyen@nexcel.vn>"
+  ],
+  "license": "MIT",
+  "homepage": "index.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
