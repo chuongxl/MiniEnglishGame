@@ -5,7 +5,6 @@ var gameBoard = function (io) {
     var qIndex = 0;
     var timer = 30;
     var gameName = "";
-
     //private method
     function resetGame() {
         qIndex = 0;
@@ -47,8 +46,10 @@ var gameBoard = function (io) {
     me.init = function () {
         var clock = $('.your-clock').FlipClock({countdown: true});
         $("#next-q").click(function () {
+            
             showQ();
             updateQuestionIndicator();
+            io.emit("start-new-q",'NQ');
             clock.setTime(timer);
             clock.start();
             io.emit('clock', {
@@ -81,6 +82,7 @@ var gameBoard = function (io) {
                     memberA = result.MA;
                     memberB = result.MB;
                     timer = parseInt(result.Time);
+                 
                 })
                 .fail(function () {
                     alert("Not found game!!");
