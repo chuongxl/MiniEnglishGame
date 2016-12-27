@@ -9,3 +9,12 @@ a {
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
     border: none;
 }
+
+.game-selection{
+  width: 120px;
+  display: inline-block;
+}
+
+.question-panel .panel-heading .btn{
+  margin-right: 8px;
+}

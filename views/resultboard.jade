@@ -1,0 +1,59 @@
+extends layout
+
+block content
+ div(class='row')
+    div(class="col-sm-12")
+        br
+        div(class="panel panel-success")
+            div(class="panel-heading") Teams
+            div(class="panel-body")
+                div(class="row")
+                    div(class="col-sm-6")
+                        div(class="panel panel-primary")
+                            div(class="panel-heading") Team A:
+                            div(class="panel-body",id='m-A') 
+                                p Alex
+                                p Muller
+                                p Bruce 
+                    div(class="col-sm-6")
+                        div(class="panel panel-danger")
+                            div(class="panel-heading") Team B:
+                            div(class="panel-body",id='m-B')  
+                                p Alex
+                                p Muller
+                                p Bruce 
+        div(class="panel panel-success")
+            div(class="panel-heading") Scores
+            div(class="panel-body")
+                div(class="row")
+                    div(class="col-sm-6")
+                        div(class="panel panel-primary")
+                            div(class="panel-heading") Team A:
+                            div(class="panel-body")  
+                                h1(align="center",id='p-A') asd
+                    div(class="col-sm-6")
+                        div(class="panel panel-danger")
+                            div(class="panel-heading") Team B:
+                            div(class="panel-body")  
+                                h1(align="center",id="p-B") asd
+
+        div(class="panel panel-success")                    
+            div(class="panel-heading") Points:
+            div(class="panel-body")  
+                div
+                    span Team A:
+                        input(type='number',id='input-point-a',class="form-control")
+                br
+                div
+                    span Team B:
+                        input(type='number',id='input-point-b',class="form-control")
+                br
+                div
+                    button(type="button",id='save-point', class="btn btn-xs btn-primary") Save
+ script(src='/javascripts/resultboard.js')
+ script(type='text/javascript').
+    $(document).ready(function(){
+        var g=new resultBoard();
+        g.init();
+        window.result = g;
+    });

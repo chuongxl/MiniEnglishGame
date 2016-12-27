@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var gameboard = require('./routes/gameboard');
+var resultboard = require('./routes/resultboard');
 var app = express();
 
 // view engine setup
@@ -25,6 +26,7 @@ app.use('/components', express.static(__dirname + '/bower_components'));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/gameboard', gameboard);
+app.use('/resultboard', resultboard);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
