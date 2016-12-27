@@ -47,14 +47,16 @@ var gameBoard = function (io) {
         var clock = $('.your-clock').FlipClock({countdown: true});
         $("#next-q").click(function () {
             
+              io.emit('clock', {
+                pic:`/games/${gameName}/${questions[qIndex].Value}`,
+                timer
+            });
             showQ();
             updateQuestionIndicator();
-            io.emit("start-new-q",'NQ');
+          
             clock.setTime(timer);
             clock.start();
-            io.emit('clock', {
-                pic:`/games/${gameName}/${questions[qIndex].Value}`
-            });
+          
         });
 
         $("#game-guide").click(function () {

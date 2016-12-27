@@ -14,7 +14,13 @@ var resultBoard = function (io) {
 
     me.init = function () {
         showPoints();
-        var clock = $('.your-clock').FlipClock({countdown: true});
+        
+        var clock = $('.your-clock').FlipClock(
+            {
+                countdown: true
+            }
+            );
+      
         $("#save-point").click(function () {
             var pAStr = $("#input-point-a").val();
             var pBStr = $("#input-point-b").val();
@@ -35,8 +41,16 @@ var resultBoard = function (io) {
         });
 
          io.on('clock', function (data) {
-            clock.setTime(timer);
+            clock.setTime(data.msg.timer);
             clock.start();
+            $('img').attr('src',data.msg.pic);
+               setTimeout(function(){
+
+            $("#myModal").modal();
+
+
+         },data.msg.timer*1000) ;
+           
         });
     }
 };
