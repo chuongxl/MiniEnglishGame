@@ -51,6 +51,19 @@ block content
                 br
                 div
                     button(type="button",id='save-point', class="btn btn-xs btn-primary") Save
+
+ #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+        h4.modal-title Picture
+      .modal-body
+        img.img-responsive
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Close
+
  script(src='/javascripts/resultboard.js')
  script(type='text/javascript').
     $(document).ready(function(){
