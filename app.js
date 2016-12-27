@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/components', express.static(__dirname + '/bower_components'));
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/gameboard', gameboard);
@@ -57,17 +58,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-//socket.io
 
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
-
-http.listen(3001, function(){
-  console.log('listening on *:3000');
-});
 
 module.exports = app;

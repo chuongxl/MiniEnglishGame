@@ -34,10 +34,13 @@ block content
                             div(class="panel-heading") Team B:
                             div(class="panel-body")  
                                 h1(align="center",id="p-B") asd
-
+        div(class="panel panel-danger")
+            div(class="panel-heading") Timer:
+            div(class="panel-body")  
+                div(class='your-clock')     
         div(class="panel panel-success")                    
             div(class="panel-heading") Points:
-            div(class="panel-body")  
+            div(class="panel-body")
                 div
                     span Team A:
                         input(type='number',id='input-point-a',class="form-control")
@@ -51,7 +54,6 @@ block content
  script(src='/javascripts/resultboard.js')
  script(type='text/javascript').
     $(document).ready(function(){
-        var g=new resultBoard();
+        var g=new resultBoard(io("/#{gameName}"));
         g.init();
-        window.result = g;
     });

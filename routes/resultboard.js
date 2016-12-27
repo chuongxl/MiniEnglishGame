@@ -19,7 +19,8 @@ router.get('/', function (req, res, next) {
   res.render('resultboard', {
     title: 'Result Board',
     teamA: gameData.MA,
-    teamB: gameData.MB
+    teamB: gameData.MB,
+    gameName: gameName
   });
 });
 

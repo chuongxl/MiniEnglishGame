@@ -1,4 +1,4 @@
-var resultBoard = function () {
+var resultBoard = function (io) {
     var me = this;
     var pointA = 0;
     var pointB = 0;
@@ -6,6 +6,10 @@ var resultBoard = function () {
     function showPoints() {
         $('#p-A').text(pointA);
         $('#p-B').text(pointB);
+    }
+
+    function emitPoints() {
+        io.emit('update-point', "asd asd asd asd");
     }
 
     me.init = function () {
@@ -22,6 +26,10 @@ var resultBoard = function () {
                 pointB += parseInt(pBStr);
             }
             showPoints();
+            emitPoints();
+        });
+        io.on('update-point', function (id, msg) {
+            console.log(msg)
         });
     }
 };

@@ -18,3 +18,10 @@ a {
 .question-panel .panel-heading .btn{
   margin-right: 8px;
 }
+
+.panel-body{
+  padding: 4px;
+}
+.panel-body .panel{
+  margin-bottom: 0
+}
