@@ -18,8 +18,8 @@ block content
               div(class="panel panel-primary question-panel")
                 div(class="panel-heading")
                     span(id="question-count") Q:
-                    button(type="button",id='next-q', class="btn btn-xs btn-success pull-right") Result
-                    button(type="button",id='result', class="btn btn-xs btn-danger pull-right ") Next
+                    button(type="button",id='result', class="btn btn-xs btn-success pull-right") Result
+                    button(type="button",id='next-q', class="btn btn-xs btn-danger pull-right ") Next
                 div(class="panel-body",id="n-question")
                     h2(class='text-danger') Your Topics is here :)
               div(class="panel panel-danger")
@@ -32,6 +32,7 @@ block content
         $(document).ready(function(){
            var g=new gameBoard();
            g.init();
+           window.board = g;
         });
        
     
