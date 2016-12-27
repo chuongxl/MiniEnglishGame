@@ -7,7 +7,8 @@ var gameBoard = function () {
     var memberA = [];
     var memberB = [];
     var qIndex = 0;
-    var timer=30;
+    var timer = 30;
+    var gameName="";
     //private method
     var reflectPoint = function () {
         $('#p-A').html(pointA);
@@ -32,27 +33,39 @@ var gameBoard = function () {
         answers = [];
         memberA = [];
         memberB = [];
-        
+
     };
     var showQ = function () {
-
         if (qIndex >= questions.length) {
             alert("End-Game");
         } else {
             var nq = questions[qIndex];
             var temp = nq.Key + ":&nbsp;" + nq.Value;
-            $("#n-question").html(temp);
+            $("#n-question")
+            .empty()
+            .append($("<h2 class='text-danger'></h2>").text(nq.Key +":"))
+            .append(isPicture(nq.Value)
+                ? $("<img class='img-responsive'/>").attr("src", `/games/${gameName}/${nq.Value}`)
+                : $("<h2 class='text-danger'></h2>").text(nq.Value));
             qIndex++;
         }
 
     };
+
+    function updateQuestionIndicator(){
+        $("#question-count").text(`Question: ${qIndex}/${questions.length}`);
+    }
+
+    function isPicture(value){
+        return value !=null && !!value.match(/\.(jpg|png|gif)$/i);
+    }
+
     //public method
     me.init = function () {
-        var clock = $('.your-clock').FlipClock({
-            countdown: true
-        });
+        var clock = $('.your-clock').FlipClock({countdown: true});
         $("#next-q").click(function () {
             showQ();
+            updateQuestionIndicator();
             clock.setTime(timer);
             clock.start();
         });
@@ -69,35 +82,32 @@ var gameBoard = function () {
             }
             reflectPoint();
         });
-        $("#game-guide").click(function(){
-             var name = $("#game-name").val();
-             if(name)
-             {
-                window.open("/games/"+name+".html");
-             }
+        $("#game-guide").click(function () {
+            if (gameName) {
+                window.open(`/games/${gameName}.html`);
+            }
         });
     };
     $("#game-run").click(function () {
-        var name = $("#game-name").val();
-         $("#n-question").html("");
-         resetGame();
-        if (name) {
-            $.getJSON("/games/" + name + ".json", function (result) {
+        gameName = $("#game-name").val();
+        $("#n-question").empty();
+        resetGame();
+
+        $.getJSON( `/games/${gameName}.json`)
+            .done(function (result) {
                 questions = result.Q;
                 answers = result.answers;
                 memberA = result.MA;
                 memberB = result.MB;
-                timer=parseInt(result.Time);
+                timer = parseInt(result.Time);
                 reflectPoint();
                 reflectMember();
+            })
+            .fail(function () {
+                reflectPoint();
+                reflectMember();
+                alert("Not found game!!");
             });
-        } else {
-             
-             reflectPoint();
-             reflectMember();
-            alert("Not found game!!");
-        }
-      
     });
     //pull data
 };
