@@ -67,6 +67,6 @@ block content
  script(src='/javascripts/resultboard.js')
  script(type='text/javascript').
     $(document).ready(function(){
-        var g=new resultBoard(io("/#{gameName}"));
+        var g=new resultBoard(io());
         g.init();
     });

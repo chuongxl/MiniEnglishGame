@@ -9,7 +9,7 @@ var resultBoard = function (io) {
     }
 
     function emitPoints() {
-        io.emit('update-point', "asd asd asd asd");
+        io.emit('update-point', {pointA, pointB});
     }
 
     me.init = function () {
@@ -25,11 +25,14 @@ var resultBoard = function (io) {
             if (pBStr) {
                 pointB += parseInt(pBStr);
             }
-            showPoints();
+
             emitPoints();
         });
-        io.on('update-point', function (id, msg) {
-            console.log(msg)
+        io.on('update-point', function (data) {
+            pointA = data.msg.pointA;
+            pointB = data.msg.pointB;
+            showPoints();
+            console.log(msg);
         });
     }
 };
