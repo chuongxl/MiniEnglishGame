@@ -14,7 +14,7 @@ var resultBoard = function (io) {
 
     me.init = function () {
         showPoints();
-
+        var clock = $('.your-clock').FlipClock({countdown: true});
         $("#save-point").click(function () {
             var pAStr = $("#input-point-a").val();
             var pBStr = $("#input-point-b").val();
@@ -32,7 +32,11 @@ var resultBoard = function (io) {
             pointA = data.msg.pointA;
             pointB = data.msg.pointB;
             showPoints();
-            console.log(msg);
+        });
+
+         io.on('clock', function (data) {
+            clock.setTime(timer);
+            clock.start();
         });
     }
 };

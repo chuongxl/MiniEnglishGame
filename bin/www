@@ -36,8 +36,9 @@ io.on('connection', function (socket) {
   socket.on('update-point', function (msg) {
       io.emit('update-point', { for: 'everyone', msg });
   });
-
-
+  socket.on('clock', function (msg) {
+      io.emit('clock', { for: 'everyone', msg });
+  });
 });
 
 server.listen(port);

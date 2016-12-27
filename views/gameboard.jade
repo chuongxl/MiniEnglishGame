@@ -30,7 +30,7 @@ block content
     script(src='/javascripts/gameboard.js')
     script(type='text/javascript').
         $(document).ready(function(){
-           var g=new gameBoard();
+           var g=new gameBoard(io());
            g.init();
            window.board = g;
         });

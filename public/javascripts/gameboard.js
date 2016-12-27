@@ -1,4 +1,4 @@
-var gameBoard = function () {
+var gameBoard = function (io) {
     var me = this;
     var questions = [];
     var answers = [];
@@ -51,6 +51,9 @@ var gameBoard = function () {
             updateQuestionIndicator();
             clock.setTime(timer);
             clock.start();
+            io.emit('clock', {
+                pic:`/games/${gameName}/${questions[qIndex].Value}`
+            });
         });
 
         $("#game-guide").click(function () {
