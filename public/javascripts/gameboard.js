@@ -1,15 +1,10 @@
 var gameBoard = function () {
     var me = this;
-    var pointA = 0;
-    var pointB = 0;
     var questions = [];
     var answers = [];
-    var memberA = [];
-    var memberB = [];
     var qIndex = 0;
     var timer = 30;
     var gameName = "";
-    var resultWindow;
 
     //private method
     function resetGame() {
@@ -48,19 +43,6 @@ var gameBoard = function () {
         return value != null && !!value.match(/\.(jpg|png|gif|jpeg)$/i);
     }
 
-    me.getTeams = function () {
-        return {"A": memberA, "B": memberB}
-    }
-
-    me.getPoints = function () {
-        return {"A": pointA, "B": pointB}
-    }
-
-    me.setPoints = function (pA, pB) {
-        pointA = pA;
-        pointB = pB;
-    }
-
     //public method
     me.init = function () {
         var clock = $('.your-clock').FlipClock({countdown: true});
@@ -78,7 +60,9 @@ var gameBoard = function () {
         });
 
         $("#result").click(function () {
-            window.open("/resultboard", "resultboard").focus();
+            window
+                .open(`/resultboard?game=${gameName}`, "resultboard")
+                .focus();
         });
 
         $("#game-run").click(function () {
